@@ -13,9 +13,6 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Jay Vaghani
- */
 public class Utility extends ManageBrowser {
     /**
      * This method will click on element
@@ -165,11 +162,26 @@ public class Utility extends ManageBrowser {
         actions.moveToElement(driver.findElement(by)).click().build().perform();
     }
 
+    public boolean verifyText(WebDriver driver, By locator, String expectedText) {
+        WebElement element = driver.findElement(locator);
+        String actualText = element.getText();
+        return actualText.equals(expectedText);
+    }
     //************************** Waits Methods *********************************************//
 
     /**
      * This method will use to wait until  VisibilityOfElementLocated
      */
+    public void waitAndClick(By by){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        driver.findElement(by).click();
+
+    }
     public WebElement waitUntilVisibilityOfElementLocated(By by, int time) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));

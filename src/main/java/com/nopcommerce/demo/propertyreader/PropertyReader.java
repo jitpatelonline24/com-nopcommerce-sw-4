@@ -3,9 +3,6 @@ package com.nopcommerce.demo.propertyreader;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-/**
- * Created by Jay Vaghani
- */
 public class PropertyReader {
 
     /*
